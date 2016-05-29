@@ -18,6 +18,24 @@ import {Provider} from 'react-redux';
 // the "history" is now the syncHistoryWithStore
 import store, {history} from './store';
 
+import Raven from 'raven-js';
+import { sentry_url, logException } from './data/config';
+
+Raven.config(sentry_url, {
+    tags: {
+        git_commit: 'asdfas23423',
+        user_level: 'editor'
+    }
+}).install();
+
+// logException(new Error('download failed'), {
+//    email: 'asklein@gmail.com' 
+// });
+
+// Raven.captureMessage('something bad happened!');
+// Raven.showReportDialog();
+//
+// console.log(window.user.doesNotExist.different);
 
 const router = (
     <Provider store={store}>
